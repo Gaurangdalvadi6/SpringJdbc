@@ -1,0 +1,76 @@
+package com.spring.jdbc;
+
+import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.spring.jdbc.dao.StudentDao;
+import com.spring.jdbc.entities.Student;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+        
+		/*
+		 * ApplicationContext con = new
+		 * ClassPathXmlApplicationContext("com/spring/jdbc/config.xml"); JdbcTemplate
+		 * template = con.getBean("jdbcTemplate",JdbcTemplate.class);
+		 * 
+		 * String query = "insert into student (id,name,city) values(?,?,?)";
+		 * 
+		 * int result = template.update(query,789,"punit","morbi");
+		 * System.out.println("data inserted successfully" + result);
+		 */
+        
+        ApplicationContext con = new ClassPathXmlApplicationContext("com/spring/jdbc/config.xml");
+        StudentDao studentDao = con.getBean("studentDao",StudentDao.class);
+        
+		/* insert query */
+        
+//        Student student = new Student();
+//        student.setId(125);
+//        student.setName("darshan");
+//        student.setCity("bhavnagar");
+//        
+//        int result = studentDao.insert(student);
+//        System.out.println("data updated " + result);
+		
+        /*-----------------------------------------*/
+		
+        
+        /* update query */
+        
+//        Student student = new Student();
+//        student.setId(125);
+//        student.setName("Darshan kaka");
+//        student.setCity("bhav bharelu bhavnagar");
+//        
+//        int result = studentDao.changes(student);
+//        System.out.println("data change successfully " + result);
+        
+		/* delete query */
+//        
+//        int result = studentDao.delete(789);
+//        System.out.println("data deleted" + result);
+        
+		/* query for single student select */
+        
+//        Student student = studentDao.getStudent(123);
+//        System.out.println(student);
+        
+        List<Student> students = studentDao.getAllStudents();
+        for (Student st : students) {
+			System.out.println(st);
+		}
+        
+        
+    }
+}
